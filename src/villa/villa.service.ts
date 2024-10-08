@@ -16,6 +16,15 @@ export class VillaService {
     return this.databaseService.villa.findMany({});
   }
 
+  // Method to get villas by owner ID
+  async getVillasByOwner(ownerId: string) {
+    return this.databaseService.villa.findMany({
+      where: {
+        userId: ownerId,
+      },
+    });
+  }
+
   async findOne(id: number) {
     return this.databaseService.villa.findUnique({
       where: { id },

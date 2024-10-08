@@ -10,7 +10,7 @@ import {
 import { VillaService } from './villa.service';
 import { Prisma } from '@prisma/client';
 
-@Controller('villa')
+@Controller('villas')
 export class VillaController {
   constructor(private readonly villaService: VillaService) {}
 
@@ -22,6 +22,11 @@ export class VillaController {
   @Get()
   findAll() {
     return this.villaService.findAll();
+  }
+
+  @Get('owner/:ownerId')
+  async getVillasByOwner(@Param('ownerId') ownerId: string) {
+    return this.villaService.getVillasByOwner(ownerId);
   }
 
   @Get(':id')
